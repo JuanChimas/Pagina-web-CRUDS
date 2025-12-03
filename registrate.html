@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InData Navbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar" id="mainNavbar">
+        <div class="logo">
+            <a href="#">InData</a>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="registrate.html" class="btn-nav">Registrate</a></li>
+        </ul>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+    
+ <div class="contenedor-principal">
+        <div class="form-wrapper">
+            <div class="encabezado">
+                <h2>Registra tu Empresa</h2>
+                <p>Comienza tu transformación digital con InData.</p>
+            </div>
+
+            <!-- El formulario envía los datos a 'procesar.php' usando el método POST -->
+            <form id="formRegistro" action="procesar.php" method="POST">
+                
+                <div class="grupo-input">
+                    <label for="companyName">Nombre de la Empresa</label>
+                    <input type="text" id="companyName" name="companyName" required placeholder="Ej. Hotel Paradiso">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="contactName">Nombre del Contacto</label>
+                    <input type="text" id="contactName" name="contactName" required placeholder="Tu nombre completo">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="correo@empresa.com">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="999 123 4567">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="industry">Giro del Negocio</label>
+                    <select id="industry" name="industry">
+                        <option value="hotel">Hotel / Hostal</option>
+                        <option value="restaurant">Restaurante</option>
+                        <option value="store">Tienda / Comercio</option>
+                        <option value="services">Servicios Profesionales</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="needs">¿Qué necesitas gestionar?</label>
+                    <textarea id="needs" name="needs" rows="4" placeholder="Ej: Controlar reservaciones e inventario..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar">Crear Cuenta y Solicitar Demo</button>
+            </form>
+            
+            <div id="mensajeExito" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- Vinculamos el script de validación -->
+    <script src="script.js"></script>
+    
+
+
+
+
+</body>
+</html>
