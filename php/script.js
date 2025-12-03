@@ -1,61 +1,60 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Obtenemos las referencias a los elementos del HTML
     const form = document.getElementById('formRegistro');
     const mensajeExito = document.getElementById('mensajeExito');
     const btnEnviar = document.querySelector('.btn-enviar');
 
-    // Escuchamos el evento cuando el usuario intenta enviar el formulario
+    // Escuchamos cuando alguien le da clic a "Enviar"
     form.addEventListener('submit', function(e) {
-        // 1. Evitamos que la página se recargue (comportamiento normal de un form)
+        
+        // 1. IMPORTANTE: Detenemos el envío normal para hacerlo nosotros manual
         e.preventDefault();
 
-        // 2. Validación básica del teléfono (Solo números)
+        // 2. Validación de Teléfono (Solo números)
         const phoneInput = document.getElementById('phone');
         const phoneValue = phoneInput.value.trim();
-        
-        // Expresión regular: solo permite dígitos del 0 al 9
+
+        // Si el teléfono tiene letras o espacios, mostramos error y paramos
         if (!/^\d+$/.test(phoneValue)) {
-            alert('Por favor, ingresa un número de teléfono válido (solo números, sin espacios ni guiones).');
+            alert('Por favor, ingresa un número de teléfono válido (solo números, sin guiones ni espacios).');
             phoneInput.focus();
-            return; // Detenemos la función aquí si hay error
+            return;
         }
 
-        // 3. Cambiamos el botón para dar feedback al usuario
+        // 3. Cambiamos el botón para que el usuario sepa que está cargando
         const textoOriginal = btnEnviar.textContent;
         btnEnviar.textContent = 'Enviando...';
         btnEnviar.disabled = true;
 
         // 4. Preparamos los datos para Netlify
-        // Netlify espera los datos como "application/x-www-form-urlencoded"
+        // Netlify necesita que los datos vayan "codificados como URL"
         const formData = new FormData(form);
         const data = new URLSearchParams(formData).toString();
 
-        // 5. Enviamos los datos usando fetch (AJAX)
-        fetch('/', {
-            method: 'POST',
+        // 5. Enviamos los datos a Netlify usando fetch (AJAX)
+        fetch("/", {
+            method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: data
         })
         .then(() => {
-            // --- ÉXITO ---
-            // Ocultamos el formulario y mostramos el mensaje de gracias
+            // --- SI TODO SALIÓ BIEN ---
+            // Ocultamos el formulario
             form.style.display = 'none';
+            // Mostramos el mensaje de éxito
             if (mensajeExito) {
                 mensajeExito.style.display = 'block';
             } else {
-                // Fallback por si no existe el div de mensaje
-                alert("¡Gracias! Hemos recibido tus datos.");
-                form.reset();
-                btnEnviar.textContent = textoOriginal;
-                btnEnviar.disabled = false;
-                form.style.display = 'block';
+                alert("¡Gracias! Hemos recibido tus datos correctamente.");
+                window.location.reload();
             }
         })
         .catch((error) => {
-            // --- ERROR ---
-            console.error('Error de envío:', error);
-            alert('Hubo un problema al enviar el formulario. Por favor revisa tu conexión e inténtalo de nuevo.');
+            // --- SI HUBO UN ERROR ---
+            console.error('Error:', error);
+            alert("Hubo un problema al enviar el formulario. Intenta de nuevo.");
             
-            // Restauramos el botón
+            // Regresamos el botón a la normalidad
             btnEnviar.textContent = textoOriginal;
             btnEnviar.disabled = false;
         });
