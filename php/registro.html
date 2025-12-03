@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro InData</title>
-    <!-- Vinculamos la hoja de estilos -->
+    <!-- Asegúrate de que estilos.css esté en la misma carpeta -->
     <link rel="stylesheet" href="estilos.css">
-    <!-- Iconos opcionales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -18,14 +17,13 @@
                 <p>Comienza tu transformación digital con InData.</p>
             </div>
 
-            <!-- CAMBIOS IMPORTANTES PARA NETLIFY:
-                 1. Quitamos action="/php/procesar.php" (PHP no funciona aquí).
-                 2. Agregamos name="contacto-indata" (Así se llamará tu base de datos en Netlify).
-                 3. Agregamos data-netlify="true" (Esto activa la magia).
+            <!-- CORRECCIÓN IMPORTANTE: 
+                 1. Se eliminó action="..." para que NO intente ir a procesar.php
+                 2. Se mantiene data-netlify="true" para que Netlify capture los datos
             -->
             <form id="formRegistro" name="contacto-indata" method="POST" data-netlify="true">
                 
-                <!-- ESTE INPUT OCULTO ES OBLIGATORIO PARA QUE FUNCIONE EN NETLIFY -->
+                <!-- Campo obligatorio para Netlify -->
                 <input type="hidden" name="form-name" value="contacto-indata" />
 
                 <div class="grupo-input">
@@ -67,17 +65,16 @@
                 <button type="submit" class="btn-enviar">Crear Cuenta y Solicitar Demo</button>
             </form>
             
-            <!-- Mensaje de éxito que mostraremos con JS -->
+            <!-- Mensaje de éxito (oculto al inicio) -->
             <div id="mensajeExito" style="display:none; text-align: center; margin-top: 20px;">
-                <h3 style="color: green; font-size: 1.5rem; margin-bottom: 10px;">¡Registro Exitoso!</h3>
-                <p style="color: #555;">Gracias por registrarte. Hemos recibido tus datos correctamente.</p>
-                <p style="color: #555;">Un asesor te contactará pronto.</p>
-                <button onclick="window.location.reload()" style="margin-top:15px; padding:10px 20px; background-color:#2563eb; color:white; border:none; border-radius:5px; cursor:pointer;">Volver al formulario</button>
+                <h3 style="color: green; font-size: 1.5rem; margin-bottom: 10px;">¡Registro Recibido!</h3>
+                <p style="color: #555;">Gracias por tu interés. Hemos guardado tus datos correctamente.</p>
+                <button onclick="window.location.reload()" style="margin-top:15px; padding:10px 20px; background-color:#2563eb; color:white; border:none; border-radius:5px; cursor:pointer;">Volver</button>
             </div>
         </div>
     </div>
 
-    <!-- Vinculamos el script -->
+    <!-- CORRECCIÓN: Quitamos "/php/" de la ruta. El script debe estar junto al HTML -->
     <script src="script.js"></script>
 </body>
 </html>
