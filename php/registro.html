@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro InData</title>
+    <!-- Vinculamos la hoja de estilos -->
     <link rel="stylesheet" href="estilos.css">
+    <!-- Iconos opcionales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -16,14 +18,14 @@
                 <p>Comienza tu transformación digital con InData.</p>
             </div>
 
-            <!-- CAMBIOS IMPORTANTES AQUÍ:
-                 1. name="contacto-indata": Identifica tu formulario en el panel de Netlify.
-                 2. method="POST": Obligatorio.
-                 3. data-netlify="true": Activa el guardado automático de Netlify.
+            <!-- CAMBIOS IMPORTANTES PARA NETLIFY:
+                 1. Quitamos action="/php/procesar.php" (PHP no funciona aquí).
+                 2. Agregamos name="contacto-indata" (Así se llamará tu base de datos en Netlify).
+                 3. Agregamos data-netlify="true" (Esto activa la magia).
             -->
             <form id="formRegistro" name="contacto-indata" method="POST" data-netlify="true">
                 
-                <!-- Campo oculto necesario para que Netlify sepa qué formulario es -->
+                <!-- ESTE INPUT OCULTO ES OBLIGATORIO PARA QUE FUNCIONE EN NETLIFY -->
                 <input type="hidden" name="form-name" value="contacto-indata" />
 
                 <div class="grupo-input">
@@ -65,15 +67,17 @@
                 <button type="submit" class="btn-enviar">Crear Cuenta y Solicitar Demo</button>
             </form>
             
-            <!-- Mensaje de éxito oculto -->
+            <!-- Mensaje de éxito que mostraremos con JS -->
             <div id="mensajeExito" style="display:none; text-align: center; margin-top: 20px;">
-                <h3 style="color: green;">¡Registro Exitoso!</h3>
-                <p>Hemos recibido tus datos. Revisa tu correo pronto.</p>
-                <button onclick="window.location.reload()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">Volver</button>
+                <h3 style="color: green; font-size: 1.5rem; margin-bottom: 10px;">¡Registro Exitoso!</h3>
+                <p style="color: #555;">Gracias por registrarte. Hemos recibido tus datos correctamente.</p>
+                <p style="color: #555;">Un asesor te contactará pronto.</p>
+                <button onclick="window.location.reload()" style="margin-top:15px; padding:10px 20px; background-color:#2563eb; color:white; border:none; border-radius:5px; cursor:pointer;">Volver al formulario</button>
             </div>
         </div>
     </div>
 
+    <!-- Vinculamos el script -->
     <script src="script.js"></script>
 </body>
 </html>
