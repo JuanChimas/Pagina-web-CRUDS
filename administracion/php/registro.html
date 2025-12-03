@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro InData</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="contenedor-principal">
+        <div class="form-wrapper">
+            <div class="encabezado">
+                <h2>Registra tu Empresa</h2>
+                <p>Comienza tu transformación digital con InData.</p>
+            </div>
+
+            <!-- CAMBIOS IMPORTANTES AQUÍ:
+                 1. name="contacto-indata": Identifica tu formulario en el panel de Netlify.
+                 2. method="POST": Obligatorio.
+                 3. data-netlify="true": Activa el guardado automático de Netlify.
+            -->
+            <form id="formRegistro" name="contacto-indata" method="POST" data-netlify="true">
+                
+                <!-- Campo oculto necesario para que Netlify sepa qué formulario es -->
+                <input type="hidden" name="form-name" value="contacto-indata" />
+
+                <div class="grupo-input">
+                    <label for="companyName">Nombre de la Empresa</label>
+                    <input type="text" id="companyName" name="companyName" required placeholder="Ej. Hotel Paradiso">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="contactName">Nombre del Contacto</label>
+                    <input type="text" id="contactName" name="contactName" required placeholder="Tu nombre completo">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="correo@empresa.com">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="999 123 4567">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="industry">Giro del Negocio</label>
+                    <select id="industry" name="industry">
+                        <option value="hotel">Hotel / Hostal</option>
+                        <option value="restaurant">Restaurante</option>
+                        <option value="store">Tienda / Comercio</option>
+                        <option value="services">Servicios Profesionales</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label for="needs">¿Qué necesitas gestionar?</label>
+                    <textarea id="needs" name="needs" rows="4" placeholder="Ej: Controlar reservaciones e inventario..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar">Crear Cuenta y Solicitar Demo</button>
+            </form>
+            
+            <!-- Mensaje de éxito oculto -->
+            <div id="mensajeExito" style="display:none; text-align: center; margin-top: 20px;">
+                <h3 style="color: green;">¡Registro Exitoso!</h3>
+                <p>Hemos recibido tus datos. Revisa tu correo pronto.</p>
+                <button onclick="window.location.reload()" style="margin-top:10px; padding:5px 10px; cursor:pointer;">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
